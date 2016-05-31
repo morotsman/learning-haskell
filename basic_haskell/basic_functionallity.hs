@@ -46,9 +46,28 @@ fib' n = fib(n-1) + fib(n-2)
 fibs :: Int -> [Int]
 fibs n = [fib(x) | x <- [0..n]]
 
---partialy applied function
+--where and let
+area :: Int -> Int -> Int
+area width height = totalArea 
+    where totalArea = width * height
 
 
-
-
+area' :: Int -> Int -> Int
+area' width height =
+      let totalArea = width * height
+      in totalArea
  
+area'' :: Int -> Int -> Int
+area'' width height =
+       let areaCalculator w h = w * h
+       in areaCalculator width height
+
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]  
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2] 
+
+quicksort :: (Ord a) => [a] -> [a]  
+quicksort [] = []  
+quicksort (x:xs) =   
+    let smallerSorted = quicksort [a | a <- xs, a <= x]  
+        biggerSorted = quicksort [a | a <- xs, a > x]  
+    in  smallerSorted ++ [x] ++ biggerSorted  
