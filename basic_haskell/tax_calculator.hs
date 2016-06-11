@@ -13,9 +13,9 @@ main = do
     let results = [subtotal,taxAmount,total]
     let outputs = ["The subtotal is ", "The tax is ", "The total is "]
     let result = foldl (\a acc-> a ++ acc ++ "\n") "" $
-               map (\a -> (snd a) ++ (show (fst a))) $ 
-               filter (\a -> (fst a) /= 0) $ 
-               zipWith (\a b -> (a,b)) results outputs
+               map (\(a,b) -> b ++ (show a)) $ 
+               filter (\(a,b) -> a /= 0) $ 
+               zip results outputs
     
      
     
