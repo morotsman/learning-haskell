@@ -1,5 +1,5 @@
 module InputHelper
-( getNumericLine, getStringLine
+( getNumericLine, getStringLine, getIntegerLine
 ) where
 
 import Text.Read
@@ -11,6 +11,15 @@ getNumericLine message = do
     let maybeNumeric = readMaybe inputS :: Maybe Float
     case maybeNumeric of Just(a) -> return a
                          Nothing -> getNumericLine message
+
+
+getIntegerLine :: String -> IO Integer
+getIntegerLine message = do
+    putStrLn message
+    inputS <- getLine
+    let maybeNumeric = readMaybe inputS :: Maybe Integer
+    case maybeNumeric of Just(a) -> return a
+                         Nothing -> getIntegerLine message
 
 getStringLine :: [Char] -> IO [Char]
 getStringLine message = do
